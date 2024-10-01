@@ -1,0 +1,49 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+a:link, a:hover, a:visited, a:active{
+  color: #333;
+  text-decoration: none;
+}
+table.table{
+  border-collapse: collapse;
+  text-align: center;
+}
+table.table > thead > tr {
+  background-color: #ef5c5c;
+}
+table.table > thead th {
+  padding: 10px;
+  color: #333;
+}
+table.table th,
+table.table td {
+  border-right: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+table.table > tbody td {
+  padding: 10px;
+  color: #333;
+}
+div.grid {
+  width: 40%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row: 28px 1fr 28px;
+  row-gap: 10px;
+}
+div.grid .right-align{
+  text-align: right;
+}
+div.grid .right-align a{
+  text-align: right;
+  background-color: #333;
+  color: white;
+  padding: 0.5rem;
+}

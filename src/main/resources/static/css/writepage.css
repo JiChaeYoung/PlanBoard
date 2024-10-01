@@ -1,0 +1,46 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+label.title {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+input.titleinput {
+  display: inline-block;
+  width: 70%;
+  text-align: center;
+}
+label.deadline {
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+}
+input.deadlineinput {
+  display: inline-block;
+  text-align: center;
+  width: 70%;
+}
+div.titlebox {
+  width: 100%;
+}
+div.deadlinebox {
+  width: 100%;
+}
+div.grid {
+  padding: 1rem;
+  width: 40%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row: 28px 1fr 28px;
+  row-gap: 10px;
+}
+div.grid .right-align {
+  text-align: right;
+}
