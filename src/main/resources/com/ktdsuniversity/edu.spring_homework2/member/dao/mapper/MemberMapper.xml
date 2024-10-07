@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace 는 결국 dao 를 찾아가는 루트를 정해주는 역할과 이 BoardDaoMapper.xml을 찾아올 수 있도록 이름을 지칭해준다. -->
+<mapper namespace="com.ktdsuniversity.edu.spring_homework2.member.dao.MemberDao">
+	<insert id="insertNewMember" parameterType="com.ktdsuniversity.edu.spring_homework2.member.vo.RegistMemberVO">
+	INSERT INTO MEMBERS
+			( EMAIL
+			, NAME
+			, PASSWORD
+			, SALT)
+			VALUES
+			( #{email}
+			, #{name}
+			, #{password}
+			, #{salt})
+	</insert>
+	<select id="selectEmailCount" parameterType="string">
+	SELECT COUNT(1)
+      FROM MEMBERS
+     WHERE EMAIL = #{_parameter}
+	</select>
+	<select id="selectSalt" parameterType="string" resultType="string">
+	SELECT SALT 
+      FROM MEMBERS
+     WHERE EMAIL = #{_parameter}
+	</select>
+	<select id="selectOneMember" 
+	parameterType="com.ktdsuniversity.edu.spring_homework2.member.vo.LoginMemberVO" 
+	resultType="com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO">
+	SELECT EMAIL
+		 , NAME
+		 , PASSWORD
+		 , SALT
+		 , LOGIN_FAIL_COUNT
+		 , TO_CHAR(LATEST_LOGIN_FAIL_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_FAIL_DATE 
+		 , LATEST_LOGIN_IP
+		 , TO_CHAR(LATEST_LOGIN_SUCCESS_DATE, 'YYYY-MM-DD HH24:MI:SS') LATEST_LOGIN_FAIL_DATE 
+  	  FROM MEMBERS
+ 	 WHERE EMAIL = #{email} 
+ 	   AND PASSWORD =#{password}
+	</select>
+</mapper>
