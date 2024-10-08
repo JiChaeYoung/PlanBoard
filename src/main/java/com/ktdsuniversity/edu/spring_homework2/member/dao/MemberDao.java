@@ -17,4 +17,10 @@ public interface MemberDao {
 	public String selectSalt(String email);
 	
 	public MemberVO selectOneMember(LoginMemberVO loginMemberVO);
+	
+	public int updateLoginFailState(LoginMemberVO loginMemberVO);
+	
+	public int selectLoginImpossibleCount(String email);
+	
+	public int updateLoginSuccessState(LoginMemberVO loginMemberVO);
 }

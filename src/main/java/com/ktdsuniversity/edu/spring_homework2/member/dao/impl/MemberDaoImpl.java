@@ -39,4 +39,19 @@ public class MemberDaoImpl extends SqlSessionDaoSupport implements MemberDao{
 		return this.getSqlSession().selectOne(NAMESPACE+".selectOneMember", loginMemberVO);
 	}
 
+	@Override
+	public int updateLoginFailState(LoginMemberVO loginMemberVO) {
+		return this.getSqlSession().update(NAMESPACE+".updateLoginFailState", loginMemberVO);
+	}
+
+	@Override
+	public int selectLoginImpossibleCount(String email) {
+		return this.getSqlSession().selectOne(NAMESPACE+".selectLoginImpossibleCount",email);
+	}
+
+	@Override
+	public int updateLoginSuccessState(LoginMemberVO loginMemberVO) {
+		return this.getSqlSession().update(NAMESPACE+".updateLoginSuccessState",loginMemberVO);
+	}
+
 }

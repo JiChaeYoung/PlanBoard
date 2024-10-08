@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ktdsuniversity.edu.spring_homework2.bbs.service.PlanBoardService;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
 
 /**
