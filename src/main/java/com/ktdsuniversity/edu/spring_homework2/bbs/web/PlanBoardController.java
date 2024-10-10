@@ -30,18 +30,27 @@ public class PlanBoardController {
 	
 	// 4. 모든 작업 확인하기 
 	@GetMapping("/planboard/list")
-	public String viewBoardList(Model model) {
-		List<PlanBoardVO> planboardlist = this.planBoardService.getAllPlanBoard();
+	public String viewBoardList(Model model,
+						@SessionAttribute(value = "_LOGIN_USER_" , required = false)MemberVO memberVO) {
+		if(memberVO==null) {
+			return "redirect:/member/login";
+		}
+		List<PlanBoardVO> planboardlist = this.planBoardService.getAllPlanBoard(memberVO);
 		model.addAttribute("planboardlist",planboardlist);
 		return "planboard/list";
 	}
 	@GetMapping("/planboard/write")
-	public String viewPlanBoardWritePage() {
+	public String viewPlanBoardWritePage(@SessionAttribute(value="_LOGIN_USER_", required = false)MemberVO memberVO) {
+		if(memberVO == null) {
+			return "redirect:/member/login";
+		}
 		return "planboard/writepage";
 	}
 	// 1. 새로운 할 일을 등록하는 것
 	@PostMapping("/planboard/write")
-	public String writePlanBoard(WritePlanBoardVO writePlanBoardVo) {
+	public String writePlanBoard(WritePlanBoardVO writePlanBoardVo,
+								@SessionAttribute(value="_LOGIN_USER_", required = false)MemberVO memberVO) {
+		writePlanBoardVo.setEmail(memberVO.getEmail());
 		this.planBoardService.createNewPlanBoard(writePlanBoardVo);
 		return "redirect:/planboard/list";
 	}

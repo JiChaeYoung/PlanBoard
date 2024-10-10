@@ -9,6 +9,7 @@ import com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao;
 import com.ktdsuniversity.edu.spring_homework2.bbs.service.PlanBoardService;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
 @Service
 public class PlanBoardServiceImpl implements PlanBoardService{
@@ -35,8 +36,8 @@ public class PlanBoardServiceImpl implements PlanBoardService{
 	}
 
 	@Override
-	public List<PlanBoardVO> getAllPlanBoard() {
-		List<PlanBoardVO> planBoardVo = this.planboardDao.selectAllPlanBoard();
+	public List<PlanBoardVO> getAllPlanBoard(MemberVO memberVO) {
+		List<PlanBoardVO> planBoardVo = this.planboardDao.selectAllPlanBoard(memberVO);
 		return planBoardVo;
 	}
 	

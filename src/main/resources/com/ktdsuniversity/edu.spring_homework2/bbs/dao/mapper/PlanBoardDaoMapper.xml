@@ -4,17 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- namespace 는 결국 dao 를 찾아가는 루트를 정해주는 역할과 이 BoardDaoMapper.xml을 찾아올 수 있도록 이름을 지칭해준다. -->
 <mapper namespace="com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao">
+<resultMap type="com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO" id="planBoardVOMap" autoMapping="true">
+	<id column="ID" property="id"/>
+	<result column="SUBJECT" property="subject"/>
+	<result column="DEADLINE" property="deadLine"/>
+	<result column="ISDONE" property="isdone"/>
+<association property="memberVO" javaType="com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO" autoMapping="true">
+	<id column="EMAIL" property="email"/>
+</association>
+</resultMap>
 <insert id="insertNewTodo" parameterType="com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO">
 INSERT INTO PLANBOARD
  ( ID,
    SUBJECT,
    DEADLINE,
-   ISDONE)
+   ISDONE,
+   EMAIL)
  VALUES
  ( SEQ_PLANBOARD_PK.NEXTVAL,
   #{subject},
   TO_DATE(#{deadLine},'YYYY-MM-DD'),
-  0)
+  0,
+  #{email})
 </insert>
 <update id="updateIsDone" parameterType="_int">
 UPDATE PLANBOARD
@@ -25,11 +36,17 @@ UPDATE PLANBOARD
  DELETE FROM PLANBOARD
   WHERE ID = #{_parameter}
 </delete>
-<select id="selectAllPlanBoard" resultType="com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO">
-SELECT ID 
-	 , SUBJECT 
-	 , TO_CHAR(DEADLINE, 'YYYY-MM-DD') DEADLINE
-	 , ISDONE 
-  FROM PLANBOARD
+<select id="selectAllPlanBoard" 
+resultMap="planBoardVOMap" 
+parameterType="com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO">
+SELECT P.ID 
+	 , P.SUBJECT 
+	 , TO_CHAR(P.DEADLINE, 'YYYY-MM-DD') DEADLINE
+	 , P.ISDONE 
+	 , M.EMAIL 
+  FROM PLANBOARD P
+  JOIN MEMBERS M
+    ON P.EMAIL = M.EMAIL
+ WHERE P.EMAIL = #{email} 
 </select>
 </mapper>

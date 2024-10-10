@@ -1,10 +1,15 @@
 package com.ktdsuniversity.edu.spring_homework2.bbs.vo;
 
+import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
+
 public class PlanBoardVO {
 	private int id;
 	private String deadLine;
 	private String subject;
 	private String isdone;
+	private MemberVO memberVO;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -29,4 +34,11 @@ public class PlanBoardVO {
 	public void setIsdone(String isdone) {
 		this.isdone = isdone;
 	}
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+	
 }
