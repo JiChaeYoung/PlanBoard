@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
@@ -27,15 +28,15 @@ public class PlanBoardDaoImpl extends SqlSessionDaoSupport implements PlanBoardD
 	}
 
 	@Override
-	public int updateIsDone(int id) {
+	public int updateIsDone(UpdatePlanBoardVO updatePlanBoardVO) {
 		return this.getSqlSession()
-				.update("com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao.updateIsDone", id);
+				.update("com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao.updateIsDone", updatePlanBoardVO);
 	}
 
 	@Override
-	public int deleteTodo(int id) {
+	public int deleteTodo(UpdatePlanBoardVO updatePlanBoardVO) {
 		return this.getSqlSession()
-				.delete("com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao.deleteTodo", id);
+				.delete("com.ktdsuniversity.edu.spring_homework2.bbs.dao.PlanBoardDao.deleteTodo", updatePlanBoardVO);
 	}
 	@Override
 	public List<PlanBoardVO> selectAllPlanBoard(MemberVO memberVO) {

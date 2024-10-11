@@ -27,14 +27,16 @@ INSERT INTO PLANBOARD
   0,
   #{email})
 </insert>
-<update id="updateIsDone" parameterType="_int">
+<update id="updateIsDone" parameterType="com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO">
 UPDATE PLANBOARD
    SET ISDONE = 1
- WHERE ID = #{_parameter}
+ WHERE ID = #{id}
+   AND EMAIL = #{email}
 </update>
-<delete id="deleteTodo" parameterType="_int">
+<delete id="deleteTodo" parameterType="com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO">
  DELETE FROM PLANBOARD
-  WHERE ID = #{_parameter}
+  WHERE ID = #{id}
+    AND EMAIL = #{email}
 </delete>
 <select id="selectAllPlanBoard" 
 resultMap="planBoardVOMap" 

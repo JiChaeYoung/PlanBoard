@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ktdsuniversity.edu.spring_homework2.bbs.service.PlanBoardService;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
@@ -50,20 +51,29 @@ public class PlanBoardController {
 	@PostMapping("/planboard/write")
 	public String writePlanBoard(WritePlanBoardVO writePlanBoardVo,
 								@SessionAttribute(value="_LOGIN_USER_", required = false)MemberVO memberVO) {
+		if(memberVO == null) {
+			return "redirect:/member/login";
+		}
 		writePlanBoardVo.setEmail(memberVO.getEmail());
 		this.planBoardService.createNewPlanBoard(writePlanBoardVo);
 		return "redirect:/planboard/list";
 	}
 	// 2. 완료버튼을 통해 상태를 업데이트하는 것
 	@GetMapping("/planboard/isdone/{id}")
-	public String changeIsDoneState(@PathVariable int id) {
-		this.planBoardService.changeIsDone(id);
+	public String changeIsDoneState(@PathVariable int id, @SessionAttribute("_LOGIN_USER_")MemberVO memberVO) {
+		UpdatePlanBoardVO updatePlanBoardVO = new UpdatePlanBoardVO();
+		updatePlanBoardVO.setEmail(memberVO.getEmail());
+		updatePlanBoardVO.setId(id);
+		this.planBoardService.changeIsDone(updatePlanBoardVO);
 		return "redirect:/planboard/list";
 	}
 	
 	@GetMapping("/planboard/delete/{id}")
-	public String removeOnePlanBoard(@PathVariable int id) {
-		this.planBoardService.removeOnePlanBoard(id);
+	public String removeOnePlanBoard(@PathVariable int id, @SessionAttribute("_LOGIN_USER_")MemberVO memberVO) {
+		UpdatePlanBoardVO updatePlanBoardVO = new UpdatePlanBoardVO();
+		updatePlanBoardVO.setEmail(memberVO.getEmail());
+		updatePlanBoardVO.setId(id);
+		this.planBoardService.removeOnePlanBoard(updatePlanBoardVO);
 		return "redirect:/planboard/list";
 	}
 }

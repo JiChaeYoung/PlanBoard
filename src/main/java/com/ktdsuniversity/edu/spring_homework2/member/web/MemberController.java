@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.ktdsuniversity.edu.spring_homework2.member.service.MemberService;
 import com.ktdsuniversity.edu.spring_homework2.member.vo.LoginMemberVO;
@@ -85,6 +86,12 @@ public class MemberController {
 		}
 		
 		return "redirect:/planboard/list";
+	}
+	@GetMapping("/member/logout")
+	public String doLogout(@SessionAttribute(value = "_LOGIN_USER_", required = false)MemberVO memberVO, HttpSession session) {
+		
+		session.invalidate();
+		return "redirect:/member/login";
 	}
 	
 }

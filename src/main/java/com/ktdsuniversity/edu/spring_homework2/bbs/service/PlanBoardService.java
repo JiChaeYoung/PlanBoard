@@ -3,6 +3,7 @@ package com.ktdsuniversity.edu.spring_homework2.bbs.service;
 import java.util.List;
 
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
@@ -14,6 +15,6 @@ import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 public interface PlanBoardService {
 	public List<PlanBoardVO> getAllPlanBoard(MemberVO memberVO);
 	public boolean createNewPlanBoard(WritePlanBoardVO writePlanBoardVo);
-	public boolean changeIsDone(int id);
-	public boolean removeOnePlanBoard(int id);
+	public boolean changeIsDone(UpdatePlanBoardVO updatePlanBoardVO);
+	public boolean removeOnePlanBoard(UpdatePlanBoardVO updatePlanBoardVO);
 }

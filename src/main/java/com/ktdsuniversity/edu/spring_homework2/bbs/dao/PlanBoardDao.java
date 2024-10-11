@@ -3,6 +3,7 @@ package com.ktdsuniversity.edu.spring_homework2.bbs.dao;
 import java.util.List;
 
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.PlanBoardVO;
+import com.ktdsuniversity.edu.spring_homework2.bbs.vo.UpdatePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.bbs.vo.WritePlanBoardVO;
 import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 
@@ -14,6 +15,6 @@ import com.ktdsuniversity.edu.spring_homework2.member.vo.MemberVO;
 public interface PlanBoardDao {
 	public List<PlanBoardVO> selectAllPlanBoard(MemberVO memberVO);
 	public int insertNewTodo(WritePlanBoardVO writePlanBoardVo);
-	public int updateIsDone(int id);
-	public int deleteTodo(int id);
+	public int updateIsDone(UpdatePlanBoardVO updatePlanBoardVO);
+	public int deleteTodo(UpdatePlanBoardVO updatePlanBoardVO);
 }

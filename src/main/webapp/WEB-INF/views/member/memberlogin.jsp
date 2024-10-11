@@ -12,7 +12,7 @@ uri="http://www.springframework.org/tags/form"%>
   </head>
   <body>
     <h1>로그인</h1>
-    <form:form modelAttribute="loginMemberVO" method="post" >
+    <form:form modelAttribute="loginMemberVO" method="post" action="/member/login">
     <div>
       <form:errors path="email" element="div" cssClass="error" />
       <form:errors path="password" element="div" cssClass="error" />
